@@ -23,7 +23,8 @@ except ModuleNotFoundError:
         Please define 'configuration.py' per the documentation.""")
 
 # Make sure required configuration parameters is set
-for parameter in ['APP_SECRET_KEY', 'APP_DEBUG', 'ALLOWED_HOSTS', 'DATABASE']:
+for parameter in ['APP_SECRET_KEY', 'APP_DEBUG', 'ALLOWED_HOSTS',
+                  'DATABASE', 'CORS_ALLOWED']:
     if not hasattr(conf, parameter):
         raise RuntimeError(
             f'Required parameter {parameter} is missing from configuration.py.'
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'dashboard',
     'resume',
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -96,6 +99,31 @@ DATABASES = {
 }
 
 
+# Logging
+# https://docs.djangoproject.com/en/3.0/topics/logging/
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -124,6 +152,10 @@ REST_FRAMEWORK = {
     ]
 }
 
+
+# A list of origins that are authorized to make cross-site HTTP requests.
+
+CORS_ALLOWED_ORIGINS = getattr(conf, 'CORS_ALLOWED')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

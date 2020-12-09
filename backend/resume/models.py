@@ -63,7 +63,7 @@ class Education(models.Model):
         return f'{self.year_of_ending} - {self.institution}'
 
     class Meta:
-        ordering = ['year_of_ending']
+        ordering = ['-year_of_ending']
 
 
 class Work(models.Model):
@@ -81,4 +81,4 @@ class Work(models.Model):
         return f'{self.organization}: {self.join_date}-{self.termination_date}'
 
     class Meta:
-        ordering = ['join_date']
+        ordering = ['-join_date']

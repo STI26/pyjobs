@@ -22,3 +22,12 @@ class BaseIsOwnerOrReadOnly(permissions.BasePermission):
                         .__getattribute__(self.owner_field)
 
         return owner == request.user
+
+
+class IsYourselfOrReadOnly(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return obj == request.user

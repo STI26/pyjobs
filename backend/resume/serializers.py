@@ -36,13 +36,14 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
     """Resume for detailed resume page."""
 
     owner = serializers.HiddenField(default=CurrentApplicantDefault())
+    owner_info = serializers.SerializerMethodField()
     educations = serializers.SerializerMethodField()
     works = serializers.SerializerMethodField()
     skills = SkillField(many=True)
 
     class Meta:
         model = models.Resume
-        fields = ['id', 'owner', 'salary', 'position',
+        fields = ['id', 'owner', 'owner_info', 'salary', 'position',
                   'skills', 'educations', 'works']
 
     def get_educations(self, obj):
@@ -54,6 +55,16 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
         return obj.owner.works.all().values(
             'id', 'organization', 'position', 'join_date', 'termination_date'
         )
+
+    def get_owner_info(self, obj):
+        return {
+            'id': obj.owner.id, 
+            'bio': obj.owner.bio, 
+            'age': (now().date() - obj.owner.date_of_birth).days // 365.25,
+            'photo': obj.owner.photo, 
+            'name': obj.owner.profile.get_full_name(),
+            'email': obj.owner.profile.email
+        }
 
     def validate_skills(self, skills):
         if not isinstance(skills, list):
