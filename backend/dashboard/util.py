@@ -13,7 +13,7 @@ class CurrentApplicantDefault:
 
 class SkillField(serializers.StringRelatedField):
     def to_representation(self, value):
-        return {'name': value.name}
+        return {'tag': value.tag}
 
     def to_internal_value(self, data):
         return data
