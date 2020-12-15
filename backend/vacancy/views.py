@@ -4,6 +4,7 @@ from rest_framework import permissions
 from vacancy import permissions as custom_permissions
 
 from . import models, serializers
+from .filters import VacancyFilter
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -25,6 +26,8 @@ class VacancyViewSet(viewsets.ModelViewSet):
     ]
 
     queryset = models.Vacancy.objects.all()
+    filter_class = VacancyFilter
+    search_fields = ['position', 'company__description']
     serializer_class = serializers.VacancyDetailSerialazer
     action_serializers = {
         'list': serializers.VacancyListSerialazer
