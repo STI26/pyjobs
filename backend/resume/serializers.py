@@ -23,7 +23,7 @@ class ResumeListSerialazer(serializers.ModelSerializer):
         return int(age)
 
     def get_skills(self, obj):
-        return obj.skills.all().values('name')
+        return obj.skills.all().values('tag')
 
     def get_photo(self, obj):
         return obj.owner.photo
@@ -59,6 +59,7 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
     def get_owner_info(self, obj):
         return {
             'id': obj.owner.id, 
+            'user_id': obj.owner.profile.id, 
             'bio': obj.owner.bio, 
             'age': (now().date() - obj.owner.date_of_birth).days // 365.25,
             'photo': obj.owner.photo, 
@@ -79,9 +80,9 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
                     'the `skill` field should be of type `dict`.'
                 )
 
-            if skill.get('name'):
+            if skill.get('tag'):
                 obj, _ = models.Skill.objects.get_or_create(
-                    name=skill['name'].lower().strip()
+                    tag=skill['tag'].lower().strip()
                 )
                 validated_data.append(obj)
 
@@ -109,11 +110,15 @@ class ApplicantSerialazer(serializers.ModelSerializer):
     profile = serializers.HiddenField(default=serializers.CurrentUserDefault())
     first_name = serializers.SerializerMethodField()
     last_name = serializers.SerializerMethodField()
+    educations = serializers.SerializerMethodField()
+    works = serializers.SerializerMethodField()
+    resumes = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Applicant
-        fields = ['profile', 'first_name', 'last_name',
-                  'bio', 'date_of_birth', 'photo']
+        fields = ['id', 'profile', 'first_name', 'last_name',
+                  'bio', 'date_of_birth', 'photo', 'works',
+                  'educations', 'resumes']
 
     def get_first_name(self, obj):
         return obj.profile.first_name
@@ -121,12 +126,25 @@ class ApplicantSerialazer(serializers.ModelSerializer):
     def get_last_name(self, obj):
         return obj.profile.last_name
 
+    def get_educations(self, obj):
+        return obj.educations.all().values(
+            'id', 'institution', 'specialization', 'year_of_ending'
+        )
+
+    def get_works(self, obj):
+        return obj.works.all().values(
+            'id', 'organization', 'position', 'join_date', 'termination_date'
+        )
+
+    def get_resumes(self, obj):
+        return obj.resumes.all().values('id', 'position')
+
 
 class SkillSerialazer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Skill
-        fields = ['id', 'name']
+        fields = ['id', 'tag']
 
 
 class EducationSerialazer(serializers.ModelSerializer):
@@ -134,7 +152,7 @@ class EducationSerialazer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Education
-        fields = ['owner', 'institution', 'specialization', 'year_of_ending']
+        fields = ['id', 'owner', 'institution', 'specialization', 'year_of_ending']
 
 
 class WorkSerialazer(serializers.ModelSerializer):
@@ -142,5 +160,5 @@ class WorkSerialazer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Work
-        fields = ['owner', 'organization', 'position',
+        fields = ['id', 'owner', 'organization', 'position',
                   'join_date', 'termination_date']

@@ -9,6 +9,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 
 class UserBaseDetailSerializer(serializers.ModelSerializer):
+    applicant = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email', 'applicant']
+    
+    def get_applicant(self, obj):
+        return (obj.applicant.pk if hasattr(obj, 'applicant') else None)
