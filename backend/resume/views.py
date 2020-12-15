@@ -5,6 +5,7 @@ from rest_framework import permissions
 from resume import permissions as custom_permissions
 
 from . import models, serializers
+from .filters import SkillFilter, ResumeFilter
 
 
 class ApplicantDetail(mixins.RetrieveModelMixin,
@@ -44,6 +45,8 @@ class ResumeViewSet(viewsets.ModelViewSet):
     ]
 
     queryset = models.Resume.objects.all()
+    filter_class = ResumeFilter
+    search_fields = ['position', 'skills__tag']
     serializer_class = serializers.ResumeDetailSerialazer
     action_serializers = {
         'list': serializers.ResumeListSerialazer

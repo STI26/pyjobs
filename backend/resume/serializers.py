@@ -58,11 +58,11 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
 
     def get_owner_info(self, obj):
         return {
-            'id': obj.owner.id, 
-            'user_id': obj.owner.profile.id, 
-            'bio': obj.owner.bio, 
+            'id': obj.owner.id,
+            'user_id': obj.owner.profile.id,
+            'bio': obj.owner.bio,
             'age': (now().date() - obj.owner.date_of_birth).days // 365.25,
-            'photo': obj.owner.photo, 
+            'photo': obj.owner.photo,
             'name': obj.owner.profile.get_full_name(),
             'email': obj.owner.profile.email
         }
@@ -152,7 +152,8 @@ class EducationSerialazer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Education
-        fields = ['id', 'owner', 'institution', 'specialization', 'year_of_ending']
+        fields = ['id', 'owner', 'institution',
+                  'specialization', 'year_of_ending']
 
 
 class WorkSerialazer(serializers.ModelSerializer):
