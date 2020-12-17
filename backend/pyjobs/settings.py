@@ -155,7 +155,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter',
-    ),
+    )
 }
 
 # A list of origins that are authorized to make cross-site HTTP requests.

@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 
 
 class CurrentApplicantDefault:
@@ -17,3 +19,26 @@ class SkillField(serializers.StringRelatedField):
 
     def to_internal_value(self, data):
         return data
+
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
+    def get_paginated_response(self, data):
+        return Response({
+            'previous': self.page.has_previous() and self.page.previous_page_number(),
+            'current': self.page.number,
+            'next': self.page.has_next() and self.page.next_page_number(),
+            'num_pages': self.page.paginator.num_pages,
+            'results': data
+        })
+
+
+def get_base_info(request):
+    return '--IP: {}; OS: {}\n--Browser: {}'.format(
+        request.META.get('REMOTE_ADDR'),
+        request.META.get('XDG_CURRENT_DESKTOP'),
+        request.META.get('HTTP_USER_AGENT')
+    )

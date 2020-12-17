@@ -10,6 +10,8 @@ class Company(models.Model):
     )
     name = models.CharField(max_length=200, db_index=True)
     description = models.TextField(db_index=True)
+    email = models.EmailField(max_length=200, blank=True)
+    photo = models.CharField(max_length=400, blank=True)
 
     def __str__(self):
         return self.name

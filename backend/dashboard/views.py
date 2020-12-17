@@ -15,6 +15,7 @@ from dashboard.serializers import (
 
 from datetime import datetime
 from .models import User
+from .util import get_base_info
 
 import logging
 
@@ -44,6 +45,7 @@ class LoginWithAuthToken(ObtainAuthToken):
                          'username': user.username}
 
         log.info(f'Login: {user.username} - {datetime.now()}')
+        log.info(get_base_info(request))
 
         return Response(response_data, status=status.HTTP_201_CREATED)
 
@@ -65,7 +67,11 @@ class RegisterWithAuthToken(APIView):
             serializer._errors['confirm'] = ['Passwords must match.']
 
             log.info('Registration failed(password matches confirmation):')
-            log.info(f'User: {request.data.get("username")} - {datetime.now()}')
+            log.info('User: {} - {}'.format(
+                request.data.get("username"),
+                datetime.now()
+            ))
+            log.info(get_base_info(request))
             return Response(serializer._errors,
                             status=status.HTTP_401_UNAUTHORIZED)
 
@@ -85,6 +91,7 @@ class RegisterWithAuthToken(APIView):
                          'username': user.username}
 
         log.info(f'Registration: {user.username} - {datetime.now()}')
+        log.info(get_base_info(request))
 
         return Response(response_data, status=status.HTTP_201_CREATED)
 
@@ -95,6 +102,7 @@ class Logout(APIView):
     def post(self, request, format=None):
         if request.user.is_authenticated:
             log.info(f'Logout: {request.user.username} - {datetime.now()}')
+            log.info(get_base_info(request))
             request.user.auth_token.delete()
         return Response(status=status.HTTP_200_OK)
 

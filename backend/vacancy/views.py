@@ -3,8 +3,9 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from vacancy import permissions as custom_permissions
 
+from dashboard.util import StandardResultsSetPagination
 from . import models, serializers
-from .filters import VacancyFilter
+from .filters import VacancyFilter, CompanyFilter
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -15,6 +16,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
     ]
 
     queryset = models.Company.objects.all()
+    filter_class = CompanyFilter
     serializer_class = serializers.CompanySerialazer
 
 
@@ -28,6 +30,7 @@ class VacancyViewSet(viewsets.ModelViewSet):
     queryset = models.Vacancy.objects.all()
     filter_class = VacancyFilter
     search_fields = ['position', 'company__description']
+    pagination_class = StandardResultsSetPagination
     serializer_class = serializers.VacancyDetailSerialazer
     action_serializers = {
         'list': serializers.VacancyListSerialazer

@@ -3,19 +3,20 @@ from rest_framework import serializers
 from . import models
 
 
-class VacancyUrlSerialazer(serializers.HyperlinkedModelSerializer):
+class VacancyUrlSerialazer(serializers.ModelSerializer):
     class Meta:
         model = models.Vacancy
-        fields = ['url', 'position']
+        fields = ['id', 'position']
 
 
 class CompanySerialazer(serializers.ModelSerializer):
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    vacancies = VacancyUrlSerialazer(many=True)
+    vacancies = VacancyUrlSerialazer(many=True, read_only=True)
 
     class Meta:
         model = models.Company
-        fields = ['owner', 'name', 'description', 'vacancies']
+        fields = ['id', 'owner', 'name', 'description',
+                  'email', 'photo', 'vacancies']
 
 
 class VacancyListSerialazer(serializers.ModelSerializer):
@@ -25,7 +26,7 @@ class VacancyListSerialazer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Vacancy
-        fields = ['company_name', 'salary', 'position']
+        fields = ['id', 'company_name', 'salary', 'position']
 
     def get_company_name(self, obj):
         return obj.company.name
@@ -38,9 +39,13 @@ class VacancyDetailSerialazer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Vacancy
-        fields = ['company', 'company_info', 'salary',
-                  'position', 'description']
+        fields = ['id', 'company', 'company_info',
+                  'salary', 'position', 'description']
 
     def get_company_info(self, obj):
-        return {'name': obj.company.name,
+        return {'id': obj.company.id,
+                'user_id': obj.company.owner.id,
+                'name': obj.company.name,
+                'email': obj.company.email,
+                'photo': obj.company.photo,
                 'description': obj.company.description}
