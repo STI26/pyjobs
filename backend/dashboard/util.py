@@ -27,11 +27,14 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
     def get_paginated_response(self, data):
-        return Response({
+        paginator = {
             'previous': self.page.has_previous() and self.page.previous_page_number(),
             'current': self.page.number,
             'next': self.page.has_next() and self.page.next_page_number(),
             'num_pages': self.page.paginator.num_pages,
+        }
+        return Response({
+            'paginator': paginator,
             'results': data
         })
 
