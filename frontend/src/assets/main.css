@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.modal-footer__btns {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 17px!important;
+}
+.modal-footer__btns * {
+    margin: 0 7px!important;
+}
+.modal-footer__links * {
+    float: right;
+    padding: 12px 24px!important;
+}
