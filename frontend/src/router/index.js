@@ -68,6 +68,12 @@ const routes = [
     name: 'VacancyEdit',
     meta: { layout: 'base-layout', onlyAuth: true },
     component: () => import('../views/vacancy/VacancyEdit.vue')
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    meta: { layout: 'blank-layout', onlyAuth: false },
+    component: () => import('../views/404.vue')
   }
 ]
 
