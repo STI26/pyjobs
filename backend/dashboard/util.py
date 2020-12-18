@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from django.core.files.storage import FileSystemStorage
+
+from django.conf import settings
+from pathlib import Path, PurePath
 
 
 class CurrentApplicantDefault:
@@ -37,6 +41,19 @@ class StandardResultsSetPagination(PageNumberPagination):
             'paginator': paginator,
             'results': data
         })
+
+
+class MediaFileSystemStorage(FileSystemStorage):
+    def get_available_name(self, name, max_length=None):
+        if max_length and len(name) > max_length:
+            raise(Exception("name's length is greater than max_length"))
+        return name
+
+    def _save(self, name, content):
+        if self.exists(name):
+            path = PurePath(settings.MEDIA_ROOT).joinpath(name)
+            Path(path).unlink(missing_ok=True)
+        return super()._save(name, content)
 
 
 def get_base_info(request):

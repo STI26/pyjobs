@@ -133,3 +133,6 @@ configuration.py
 
 # project migrations
 migrations
+
+# project media
+media

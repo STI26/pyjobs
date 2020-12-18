@@ -26,7 +26,12 @@ class ResumeListSerialazer(serializers.ModelSerializer):
         return obj.skills.all().values('tag')
 
     def get_photo(self, obj):
-        return obj.owner.photo
+        if not obj.owner.photo:
+            return None
+
+        request = self.context.get('request')
+        photo_url = obj.owner.photo.url
+        return request.build_absolute_uri(photo_url)
 
     def get_last_work(self, obj):
         return obj.owner.works.values('organization', 'position').last()
@@ -56,13 +61,21 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
             'id', 'organization', 'position', 'join_date', 'termination_date'
         )
 
+    def absolute_photo_url(self, obj):
+        if not obj.owner.photo:
+            return None
+
+        request = self.context.get('request')
+        photo_url = obj.owner.photo.url
+        return request.build_absolute_uri(photo_url)
+
     def get_owner_info(self, obj):
         return {
             'id': obj.owner.id,
             'user_id': obj.owner.profile.id,
             'bio': obj.owner.bio,
             'age': (now().date() - obj.owner.date_of_birth).days // 365.25,
-            'photo': obj.owner.photo,
+            'photo': self.absolute_photo_url(obj),
             'name': obj.owner.profile.get_full_name(),
             'email': obj.owner.profile.email
         }

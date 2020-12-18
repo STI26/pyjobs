@@ -2,6 +2,15 @@ from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from dashboard.util import MediaFileSystemStorage
+
+
+def upload_to(instance, filename):
+    return 'users/user_{}/avatar.{}'.format(
+        instance.profile.id,
+        filename.split('.')[-1]
+    )
+
 
 class Applicant(models.Model):
     profile = models.OneToOneField(
@@ -11,7 +20,12 @@ class Applicant(models.Model):
     )
     bio = models.TextField(db_index=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    photo = models.URLField(max_length=400, blank=True)
+    photo = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to=upload_to,
+        storage=MediaFileSystemStorage()
+    )
 
     def __str__(self):
         return self.profile.username

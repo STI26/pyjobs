@@ -42,10 +42,18 @@ class VacancyDetailSerialazer(serializers.ModelSerializer):
         fields = ['id', 'company', 'company_info',
                   'salary', 'position', 'description']
 
+    def absolute_photo_url(self, obj):
+        if not obj.company.photo:
+            return None
+
+        request = self.context.get('request')
+        photo_url = obj.company.photo.url
+        return request.build_absolute_uri(photo_url)
+
     def get_company_info(self, obj):
         return {'id': obj.company.id,
                 'user_id': obj.company.owner.id,
                 'name': obj.company.name,
                 'email': obj.company.email,
-                'photo': obj.company.photo,
+                'photo': self.absolute_photo_url(obj),
                 'description': obj.company.description}
