@@ -1,4 +1,12 @@
-APP_SECRET_KEY = 'secret_key'
+import random
+
+def random_key():
+    charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(-_=+)'
+    secure_random = random.SystemRandom()
+    return ''.join(secure_random.sample(charset, 50))
+
+
+APP_SECRET_KEY = random_key() # or use static secret_key
 APP_DEBUG = True
 
 DATABASE = {
