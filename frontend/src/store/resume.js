@@ -1,4 +1,7 @@
+import M from 'materialize-css'
 import axios from 'axios'
+
+const ERROR_MESSAGE = 'В данный момент сервер не доступен. Попробуйте зайти позже.'
 
 export default {
   actions: {
@@ -7,7 +10,7 @@ export default {
         const response = await axios.get('/api/resumes/resume', { params })
         return response.data
       } catch (err) {
-        console.warn(err.response, params)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async getResume (context, id) {
@@ -15,7 +18,7 @@ export default {
         const response = await axios.get(`/api/resumes/resume/${id}/`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async saveResume (context, data) {
@@ -35,7 +38,7 @@ export default {
         const response = await axios.get(`/profile/${id}`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async updateUserInfo (context, data) {
@@ -47,7 +50,7 @@ export default {
         const response = await axios.get(`/api/resumes/applicant/${id}`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async saveAdditionalUserInfo (context, data) {
@@ -71,7 +74,7 @@ export default {
         const response = await axios.get('/api/resumes/skill/')
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async getWork (context, id) {
@@ -79,7 +82,7 @@ export default {
         const response = await axios.get(`/api/resumes/work/${id}`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async saveWork (context, data) {
@@ -99,7 +102,7 @@ export default {
         const response = await axios.get(`/api/resumes/education/${id}`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async saveEducation (context, data) {

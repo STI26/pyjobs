@@ -1,4 +1,7 @@
+import M from 'materialize-css'
 import axios from 'axios'
+
+const ERROR_MESSAGE = 'В данный момент сервер не доступен. Попробуйте зайти позже.'
 
 export default {
   actions: {
@@ -7,7 +10,7 @@ export default {
         const response = await axios.get('/api/vacancies/vacancy', { params })
         return response.data
       } catch (err) {
-        console.warn(err.response, params)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async getVacancy (context, id) {
@@ -15,7 +18,7 @@ export default {
         const response = await axios.get(`/api/vacancies/vacancy/${id}/`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async saveVacancy (context, data) {
@@ -35,7 +38,7 @@ export default {
         const response = await axios.get('/api/vacancies/company', { params })
         return response.data
       } catch (err) {
-        console.warn(err.response, params)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async getCompany (context, id) {
@@ -43,7 +46,7 @@ export default {
         const response = await axios.get(`/api/vacancies/company/${id}/`)
         return response.data
       } catch (err) {
-        console.warn(err.response)
+        M.toast({ html: ERROR_MESSAGE })
       }
     },
     async saveCompany (context, data) {
