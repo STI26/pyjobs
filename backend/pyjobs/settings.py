@@ -11,36 +11,48 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path, PurePath
+import os
+import random
+
+
+def random_key():
+    charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(-_=+)'
+    secure_random = random.SystemRandom()
+    return ''.join(secure_random.sample(charset, 50))
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Import configuration parameters
-try:
-    import configuration as conf
-except ModuleNotFoundError:
-    raise ModuleNotFoundError("""Configuration file is not present.
-        Please define 'configuration.py' per the documentation.""")
+key = os.getenv('APP_SECRET_KEY')
+CONF = {
+    'APP_SECRET_KEY': key if key else random_key(),
+    'APP_DEBUG': bool(os.getenv('APP_DEBUG')),
+    'ALLOWED_HOSTS': os.getenv('ALLOWED_HOSTS').split(';'),
+    'CORS_ALLOWED': os.getenv('CORS_ALLOWED').split(';'),
+    'DATABASE': {
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': int(os.getenv('DB_PORT')) if os.getenv('DB_PORT') else 5432,
+    },
+}
 
-# Make sure required configuration parameters is set
-for parameter in ['APP_SECRET_KEY', 'APP_DEBUG', 'ALLOWED_HOSTS',
-                  'DATABASE', 'CORS_ALLOWED']:
-    if not hasattr(conf, parameter):
-        raise RuntimeError(
-            f'Required parameter {parameter} is missing from configuration.py.'
-        )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getattr(conf, 'APP_SECRET_KEY')
+SECRET_KEY = CONF['APP_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getattr(conf, 'APP_DEBUG')
+DEBUG = CONF['APP_DEBUG']
 
-ALLOWED_HOSTS = getattr(conf, 'ALLOWED_HOSTS')
+ALLOWED_HOSTS = CONF['ALLOWED_HOSTS']
 
 
 # Application definition
@@ -98,7 +110,7 @@ WSGI_APPLICATION = 'pyjobs.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': getattr(conf, 'DATABASE')
+    'default': CONF['DATABASE']
 }
 
 
@@ -166,7 +178,7 @@ REST_FRAMEWORK = {
 
 # A list of origins that are authorized to make cross-site HTTP requests.
 
-CORS_ALLOWED_ORIGINS = getattr(conf, 'CORS_ALLOWED')
+CORS_ALLOWED_ORIGINS = CONF['CORS_ALLOWED']
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -189,7 +201,7 @@ AUTH_USER_MODEL = 'dashboard.User'
 STATIC_URL = '/static/'
 STATIC_ROOT = PurePath(BASE_DIR).joinpath('statics')
 STATICFILES_DIRS = [
-    PurePath(BASE_DIR).joinpath('static')
+    # PurePath(BASE_DIR).joinpath('static')
 ]
 
 MEDIA_URL = '/media/'

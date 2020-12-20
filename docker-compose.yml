@@ -1,0 +1,67 @@
+version: "3.9"
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  vue_dist:
+   
+services:
+  db:
+    image: postgres:alpine
+    # image: postgres
+    container_name: postgresql
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web_api:
+    build: backend/
+    container_name: django_rest
+    command: bash -c "python manage.py makemigrations dashboard &&
+                      python manage.py makemigrations &&
+                      python manage.py migrate &&
+                      python manage.py collectstatic --noinput &&
+                      gunicorn pyjobs.asgi:application --bind 0:8000 -k uvicorn.workers.UvicornWorker"
+    volumes:
+      - static_volume:/usr/src/app/statics
+      - media_volume:/usr/src/app/media
+    expose:
+      - 8000
+    environment:
+      - APP_SECRET_KEY=                          # If empty, secret_key will be generated randomly
+      - APP_DEBUG=0                              # Debug mode - 0 or 1
+      - ALLOWED_HOSTS=localhost;127.0.0.1
+      - CORS_ALLOWED=http://localhost;http://127.0.0.1
+      - DB_ENGINE=django.db.backends.postgresql  # Database engine
+      - DB_NAME=postgres                         # Database name
+      - DB_USER=postgres                         # Database username
+      - DB_PASSWORD=postgres                     # Database password
+      - DB_HOST=db                               # Database server
+      - DB_PORT=5432                             # Database port (leave blank for default)
+    depends_on:
+      - db
+  vue:
+    build: frontend/
+    container_name: vue_js
+    volumes:
+      - vue_dist:/app/dist
+    depends_on:
+      - web_api
+  nginx:
+    build: nginx/
+    container_name: nginx
+    ports:
+      - 80:80
+      - 8000:8000
+    volumes:
+      - static_volume:/usr/src/app/statics
+      - media_volume:/usr/src/app/media
+      - vue_dist:/app/dist
+    depends_on:
+      - web_api
+      - vue
