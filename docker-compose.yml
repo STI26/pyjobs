@@ -23,7 +23,8 @@ services:
     build: backend/
     container_name: django_rest
     command: bash -c "python manage.py makemigrations dashboard &&
-                      python manage.py makemigrations &&
+                      python manage.py makemigrations resume &&
+                      python manage.py makemigrations vacancy &&
                       python manage.py migrate &&
                       python manage.py collectstatic --noinput &&
                       gunicorn pyjobs.asgi:application --bind 0:8000 -k uvicorn.workers.UvicornWorker"
