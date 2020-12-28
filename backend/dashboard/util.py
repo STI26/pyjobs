@@ -2,16 +2,25 @@ from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.conf import settings
 from pathlib import Path, PurePath
 
 
 class CurrentApplicantDefault:
+    """A default class that can be used to represent the current applicant"""
+
     requires_context = True
 
     def __call__(self, serializer_field):
-        return serializer_field.context['request'].user.applicant
+
+        try:
+            applicant = serializer_field.context['request'].user.applicant
+        except ObjectDoesNotExist:
+            return None
+
+        return applicant
 
     def __repr__(self):
         return '%s()' % self.__class__.__name__
@@ -57,6 +66,8 @@ class MediaFileSystemStorage(FileSystemStorage):
 
 
 def get_base_info(request):
+    """Base info for loggers"""
+
     return '--IP: {}; OS: {}\n--Browser: {}'.format(
         request.META.get('REMOTE_ADDR'),
         request.META.get('XDG_CURRENT_DESKTOP'),
