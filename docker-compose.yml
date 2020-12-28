@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 volumes:
   postgres_data:
@@ -46,7 +46,10 @@ services:
     depends_on:
       - db
   vue:
-    build: frontend/
+    build: 
+      context: frontend/
+      args:
+        - VUE_APP_BASEURL=http://localhost:8000  # URL rest api
     container_name: vue_js
     volumes:
       - vue_dist:/app/dist

@@ -4,7 +4,7 @@ import resume from '@/store/resume'
 import vacancy from '@/store/vacancy'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.baseURL = process.env.VUE_APP_BASEURL || 'http://localhost:8000'
 
 export default createStore({
   state: {
