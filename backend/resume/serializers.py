@@ -44,7 +44,7 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
     owner_info = serializers.SerializerMethodField()
     educations = serializers.SerializerMethodField()
     works = serializers.SerializerMethodField()
-    skills = SkillField(many=True)
+    skills = SkillField(many=True, required=False)
 
     class Meta:
         model = models.Resume
@@ -70,15 +70,28 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
         return request.build_absolute_uri(photo_url)
 
     def get_owner_info(self, obj):
+        if obj.owner is None:
+            return {}
+
+        if not hasattr(obj, 'date_of_birth'):
+            age = 0
+        else:
+            age = (now().date() - obj.owner.date_of_birth).days // 365.25
+
         return {
             'id': obj.owner.id,
             'user_id': obj.owner.profile.id,
             'bio': obj.owner.bio,
-            'age': (now().date() - obj.owner.date_of_birth).days // 365.25,
+            'age': age,
             'photo': self.absolute_photo_url(obj),
             'name': obj.owner.profile.get_full_name(),
             'email': obj.owner.profile.email
         }
+
+    def validate_owner(self, owner):
+        if owner is None:
+            raise serializers.ValidationError('owner can\'t be null.')
+        return owner
 
     def validate_skills(self, skills):
         if not isinstance(skills, list):
@@ -102,6 +115,9 @@ class ResumeDetailSerialazer(serializers.ModelSerializer):
         return validated_data
 
     def create(self, validated_data):
+        if not validated_data.get('skills'):
+            return super().create(validated_data)
+
         skills = validated_data.pop('skills')
         resume = models.Resume.objects.create(**validated_data)
 

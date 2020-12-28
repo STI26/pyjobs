@@ -160,3 +160,6 @@ migrations
 
 # project media
 media
+
+# test db
+sqlite.db
