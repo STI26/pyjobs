@@ -29,15 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 key = os.getenv('APP_SECRET_KEY')
 CONF = {
     'APP_SECRET_KEY': key if key else random_key(),
-    'APP_DEBUG': bool(os.getenv('APP_DEBUG')),
-    'ALLOWED_HOSTS': os.getenv('ALLOWED_HOSTS').split(';'),
-    'CORS_ALLOWED': os.getenv('CORS_ALLOWED').split(';'),
+    'APP_DEBUG': bool(os.getenv('APP_DEBUG', True)),
+    'ALLOWED_HOSTS': os.getenv('ALLOWED_HOSTS', '*').split(';'),
+    'CORS_ALLOWED': os.getenv('CORS_ALLOWED', 'http://localhost').split(';'),
     'DATABASE': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('DB_NAME', 'sqlite.db'),
+        'USER': os.getenv('DB_USER', 'sqlite'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'sqlite'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': int(os.getenv('DB_PORT')) if os.getenv('DB_PORT') else 5432,
     },
 }
