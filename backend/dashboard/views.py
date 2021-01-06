@@ -7,6 +7,9 @@ from rest_framework import viewsets, mixins, permissions, status
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 
+from drf_yasg.utils import swagger_auto_schema
+import dashboard.swagger as swagger_schemas
+
 from dashboard import permissions as custom_permissions
 from dashboard.serializers import (
     UserDetailSerializer,
@@ -29,6 +32,7 @@ class LoginWithAuthToken(ObtainAuthToken):
     Auth Token, User ID, username.
     """
 
+    @swagger_auto_schema(**swagger_schemas.login_schema)
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
@@ -53,6 +57,7 @@ class LoginWithAuthToken(ObtainAuthToken):
 class RegisterWithAuthToken(APIView):
     """Class based view registration."""
 
+    @swagger_auto_schema(**swagger_schemas.registration_schema)
     def post(self, request, *args, **kwargs):
 
         # Ensure fields are correct
