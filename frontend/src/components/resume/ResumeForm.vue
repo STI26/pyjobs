@@ -56,6 +56,7 @@ import { onMounted, onUpdated, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { setObjFields, setErrorFields, clearObjectFields } from '@/assets/main'
+import { useI18n } from 'vue-i18n'
 
 export default {
   props: {
@@ -110,12 +111,13 @@ export default {
     }
 
     onMounted(async () => {
+      const { t } = useI18n({ useScope: 'global' })
       // fill form
       props.dataForm && setObjFields(form, props.dataForm)
       // load skills and autocomplete
       chipsObj = M.Chips.init(chips.value, {
         data: form.skills,
-        placeholder: $t('components.resume.resumeForm.skills'),
+        placeholder: t('components.resume.resumeForm.skills'),
         secondaryPlaceholder: '+Tag',
         autocompleteOptions: {
           data: await autocompleteSkills()

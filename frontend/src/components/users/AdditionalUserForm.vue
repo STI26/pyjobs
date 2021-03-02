@@ -63,6 +63,7 @@ import { onMounted, onUnmounted, onUpdated, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { setObjFields, setErrorFields, clearObjectFields } from '@/assets/main'
+import { useI18n } from 'vue-i18n'
 
 export default {
   props: {
@@ -88,6 +89,7 @@ export default {
       photo: '',
       nonFieldErrors: ''
     })
+    const { t } = useI18n({ useScope: 'global' })
 
     const saveInfo = () => {
       const action = form.id ? 'updateAdditionalUserInfo' : 'saveAdditionalUserInfo'
@@ -110,11 +112,7 @@ export default {
           clearObjectFields(form)
           clearObjectFields(errors)
 
-          if (props.redirectTo) {
-            router.push(props.redirectTo)
-          } else {
-            router.push('/profile/')
-          }
+          router.push('/profile/')
         })
         .catch(error => {
           setErrorFields(errors, error.response.data)
@@ -125,7 +123,7 @@ export default {
       const files = e.target.files || e.dataTransfer.files
       if (!files.length) return null
       if (files[0].size > 1048576) {
-        M.toast({ html: 'Выберите файл размером до 1 мегабайта.' })
+        M.toast({ html: t('components.resume.resumeForm.chooseFile') })
         return null
       }
       photoFile = files[0]

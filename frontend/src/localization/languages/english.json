@@ -99,7 +99,8 @@
         "delete": "delete",
         "photo": "your photo",
         "loadPhoto": "Load photo",
-        "save": "Save"
+        "save": "Save",
+        "chooseFile": "Select a file up to 1 megabyte in size."
       }
     },
     "vacancy": {
