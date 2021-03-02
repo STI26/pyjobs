@@ -49,7 +49,6 @@ export default {
 <style lang="scss" scoped>
   .page-footer {
     padding-top: 0;
-
   }
 
   .footer-copyright {

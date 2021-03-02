@@ -14,7 +14,10 @@
       <h6>{{ resume.position.toUpperCase() }}</h6>
       <p>
         {{ $t('components.resume.resumeDetailBlock.salary') }}:
-        <span v-if="resume.salary">от ${{ resume.salary }}</span>
+        <span v-if="resume.salary">
+          {{ $t('components.resume.resumeDetailBlock.from') }}
+          ${{ resume.salary }}
+        </span>
         <span v-else>{{ $t('components.resume.resumeDetailBlock.noSalary') }}</span>
       </p>
     </div>

@@ -63,16 +63,19 @@
         "delete": "Delete",
         "salary": "Salary",
         "noSalary": "salary not specified",
+        "from": "from",
         "skills": "Skills"
       },
       "resumeForm": {
         "position": "Position",
         "salary": "Salary",
-        "save": "Save"
+        "save": "Save",
+        "skills": "Skills"
       },
       "resumeListBlock": {
         "salary": "Salary",
         "noSalary": "salary not specified",
+        "from": "from",
         "lastWork": "Last Work"
       },
       "workInfo": {

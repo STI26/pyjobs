@@ -11,7 +11,7 @@
               required
             ></textarea>
             <label for="bio">
-              {{ $t('components.resume.users.additionalUserForm.about') }}
+              {{ $t('components.users.additionalUserForm.about') }}
             </label>
           </div>
         </div>
@@ -26,21 +26,21 @@
               required
             />
             <label for="year-of-birth">
-              {{ $t('components.resume.users.additionalUserForm.yearOfBirth') }}
+              {{ $t('components.users.additionalUserForm.yearOfBirth') }}
             </label>
           </div>
         </div>
         <label v-if="form.photo">
           <input v-model="clearPhoto" type="checkbox" class="filled-in" />
           <span>
-            {{ $t('components.resume.users.additionalUserForm.delete') }}
-            <a :href="form.photo">{{ $t('components.resume.users.additionalUserForm.photo') }}</a>
+            {{ $t('components.users.additionalUserForm.delete') }}
+            <a :href="form.photo">{{ $t('components.users.additionalUserForm.photo') }}</a>
           </span>
         </label>
         <div class="row">
           <div class="file-field input-field  col s12">
             <div class="btn">
-              <span>{{ $t('components.resume.users.additionalUserForm.loadPhoto') }}</span>
+              <span>{{ $t('components.users.additionalUserForm.loadPhoto') }}</span>
               <input type="file" accept="image/png, image/jpeg" @change="onImageChange">
             </div>
             <div class="file-path-wrapper">
@@ -49,7 +49,7 @@
           </div>
         </div>
         <button class="btn waves-effect waves-light" type="submit">
-          {{ $t('components.resume.users.additionalUserForm.save') }}
+          {{ $t('components.users.additionalUserForm.save') }}
           <i class="material-icons right">send</i>
         </button>
       </form>

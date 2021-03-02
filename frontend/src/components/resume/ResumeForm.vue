@@ -115,7 +115,7 @@ export default {
       // load skills and autocomplete
       chipsObj = M.Chips.init(chips.value, {
         data: form.skills,
-        placeholder: 'Навыки',
+        placeholder: $t('components.resume.resumeForm.skills'),
         secondaryPlaceholder: '+Tag',
         autocompleteOptions: {
           data: await autocompleteSkills()

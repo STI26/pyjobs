@@ -2,7 +2,6 @@
   <div class="container">
     <div v-if="!additionalUserInfo">
       <AdditionalUserForm redirectTo="/newresume" />
-    <button>Next</button>
     </div>
     <div v-else>
       <ResumeForm />

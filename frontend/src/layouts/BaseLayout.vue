@@ -28,4 +28,13 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@media only screen and (min-width: 601px) {
+  .main-content {
+    min-height: calc(100vh - 64px);
+  }
+}
+.main-content {
+  min-height: calc(100vh - 56px);
+}
+</style>

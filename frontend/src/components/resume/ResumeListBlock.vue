@@ -11,7 +11,10 @@
       </span>
       <p>
         <strong>{{ $t('components.resume.resumeListBlock.salary') }}: </strong>
-        <span v-if="resume.salary">от {{ resume.salary }}</span>
+        <span v-if="resume.salary">
+          {{ $t('components.resume.resumeListBlock.from') }}
+          ${{ resume.salary }}
+        </span>
         <span v-else>{{ $t('components.resume.resumeListBlock.noSalary') }}</span><br>
         <small class="custom-badge" v-for="skill of resume.skills" :key="skill.tag">{{ skill.tag }}</small><br>
         <span v-if="resume.last_work">

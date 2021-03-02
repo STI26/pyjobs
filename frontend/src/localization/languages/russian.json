@@ -62,16 +62,19 @@
         "delete": "Удалить",
         "salary": "Зарплата",
         "noSalary": "з/п не указана",
+        "from": "от",
         "skills": "Навыки"
       },
       "resumeForm": {
         "position": "Позиция",
         "salary": "Зарплата",
-        "save": "Сохранить"
+        "save": "Сохранить",
+        "skills": "Навыки"
       },
       "resumeListBlock": {
         "salary": "Зарплата",
         "noSalary": "з/п не указана",
+        "from": "от",
         "lastWork": "Последнее место работы"
       },
       "workInfo": {

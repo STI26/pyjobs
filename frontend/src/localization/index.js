@@ -7,8 +7,10 @@ const messages = {
   ru
 }
 
+const browserLang = navigator.language.split('-')[0]
+
 const i18n = createI18n({
-  locale: navigator.language,
+  locale: browserLang in messages ? browserLang : 'en',
   fallbackLocale: 'en',
   messages
 })
