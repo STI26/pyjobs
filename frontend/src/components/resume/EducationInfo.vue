@@ -1,7 +1,7 @@
 <template>
   <div v-if="educationsData" class="block-educations">
     <div class="block-educations__header">
-      <h5>Образование:</h5>
+      <h5>{{ $t('components.resume.educationInfo.education') }}:</h5>
       <a class="btn-floating" @click.prevent="openModal"><i class="material-icons">add</i></a>
     </div>
     <ul class="collection">
@@ -11,19 +11,23 @@
         class="collection-item"
       >
         <small v-if="isOwner" class="space-between">
-          <a href="#" @click.prevent="openModal(education)">Редактировать</a>
-          <a href="#" @click.prevent="deleteEducation(education.id)">Удалить</a>
+          <a href="#" @click.prevent="openModal(education)">
+            {{ $t('components.resume.educationInfo.edit') }}
+          </a>
+          <a href="#" @click.prevent="deleteEducation(education.id)">
+            {{ $t('components.resume.educationInfo.delete') }}
+          </a>
         </small>
-        <p>Учебное завидение: {{ education.institution }}</p>
-        <p>Специальность: {{ education.specialization }}</p>
-        <p>Год окончания: {{ education.year_of_ending }}</p>
+        <p>{{ $t('components.resume.educationInfo.institution') }}: {{ education.institution }}</p>
+        <p>{{ $t('components.resume.educationInfo.specialization') }}: {{ education.specialization }}</p>
+        <p>{{ $t('components.resume.educationInfo.yearOfEnding') }}: {{ education.year_of_ending }}</p>
       </li>
     </ul>
     <!-- Modal Form -->
     <div class="modal" ref="modalForm">
       <form @submit.prevent="onSubmit">
         <div class="modal-content">
-          <h4>Образование</h4>
+          <h4>{{ $t('components.resume.educationInfo.education') }}</h4>
           <div class="input-field">
             <input
               id="edu-institution"
@@ -33,7 +37,9 @@
               v-model="form.institution"
               required
             />
-            <label for="edu-institution">Учебное завидение</label>
+            <label for="edu-institution">
+              {{ $t('components.resume.educationInfo.institution') }}
+            </label>
             <span v-if="errors.institution" class="helper-text red-text">{{
               errors.institution
             }}</span>
@@ -47,7 +53,9 @@
               v-model="form.specialization"
               required
             />
-            <label for="edu-specialization">Специальность</label>
+            <label for="edu-specialization">
+              {{ $t('components.resume.educationInfo.specialization') }}
+            </label>
             <span v-if="errors.specialization" class="helper-text red-text">{{
               errors.specialization
             }}</span>
@@ -61,7 +69,9 @@
               v-model="form.year_of_ending"
               required
             />
-            <label for="edu-year_of_ending">Год окончания</label>
+            <label for="edu-year_of_ending">
+              {{ $t('components.resume.educationInfo.yearOfEnding') }}
+            </label>
             <span v-if="errors.year_of_ending" class="helper-text red-text">{{
               errors.year_of_ending
             }}</span>
@@ -76,14 +86,14 @@
         <div class="modal-footer">
           <div class="modal-footer__btns">
             <a href="#!" class="btn modal-close waves-effect waves-light red"
-              >Отмена</a
+              >{{ $t('components.resume.educationInfo.cancel') }}</a
             >
             <button
               class="btn waves-effect waves-light"
               type="submit"
               name="action"
             >
-              Сохранить
+              {{ $t('components.resume.educationInfo.save') }}
               <i class="material-icons right">send</i>
             </button>
           </div>

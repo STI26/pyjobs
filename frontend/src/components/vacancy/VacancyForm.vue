@@ -10,7 +10,8 @@
             class="validate"
             required
           >
-            <option value="" disabled selected>Выберите компанию</option>
+            <option value="" disabled selected>
+              {{ $t('components.vacancy.vacancyForm.selectCompany') }}</option>
             <option
               v-for="company in companyList.options"
               :key="company.id"
@@ -18,7 +19,9 @@
               >{{ company.name }}
             </option>
           </select>
-          <label>Компания</label>
+          <label>
+            {{ $t('components.vacancy.vacancyForm.company') }}
+          </label>
           <span v-if="errors.company" class="helper-text red-text">{{
             errors.company
           }}</span>
@@ -38,7 +41,9 @@
             v-model="form.position"
             required
           />
-          <label for="position">Позиция</label>
+          <label for="position">
+            {{ $t('components.vacancy.vacancyForm.position') }}
+          </label>
           <span v-if="errors.position" class="helper-text red-text">{{
             errors.position
           }}</span>
@@ -53,7 +58,9 @@
             class="validate"
             v-model="form.salary"
           />
-          <label for="salary">Зарплата</label>
+          <label for="salary">
+            {{ $t('components.vacancy.vacancyForm.salary') }}
+          </label>
           <span v-if="errors.salary" class="helper-text red-text">{{
             errors.salary
           }}</span>
@@ -67,11 +74,13 @@
             v-model="form.description"
             required
           ></textarea>
-          <label for="description-vacancy">Описание</label>
+          <label for="description-vacancy">
+            {{ $t('components.vacancy.vacancyForm.description') }}
+          </label>
         </div>
       </div>
       <button class="btn waves-effect waves-light" type="submit">
-        Сохранить
+        {{ $t('components.vacancy.vacancyForm.save') }}
         <i class="material-icons right">save</i>
       </button>
     </form>

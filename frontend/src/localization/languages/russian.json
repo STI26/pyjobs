@@ -1,0 +1,197 @@
+{
+  "components": {
+    "bars": {
+      "navbar": {
+        "resumes": "Резюме",
+        "vacanies": "Вакансии",
+        "register": "Регистрация",
+        "login": "Вход",
+        "logout": "Выход"
+      },
+      "sidebar": {
+        "filter": "Фильтр",
+        "position": "Должность",
+        "salary": "Зарплата",
+        "age": "Возраст",
+        "from": "от",
+        "to": "до",
+        "apply": "Применить",
+        "reset": "Сбросить"
+      }
+    },
+    "auth": {
+      "login": {
+        "login": "Вход",
+        "username": "Ник",
+        "password": "Пароль",
+        "cancel": "Отмена",
+        "enter": "Войти",
+        "register": "Зарегистрироватся"
+      },
+      "register": {
+        "register": "Регистрация",
+        "username": "Ник",
+        "email": "Email",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "password": "Пароль",
+        "passwordAgain": "Пароль ещё раз",
+        "send": "Зарегистрироватся",
+        "login": "Вход"
+      }
+    },
+    "resume": {
+      "applicantInfo": {
+        "edit": "Редактировать",
+        "age": "лет",
+        "contacts": "Контакты",
+        "about": "О себе"
+      },
+      "educationInfo": {
+        "education": "Образование",
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "institution": "Учебное завидение",
+        "specialization": "Специальность",
+        "yearOfEnding": "Год окончания",
+        "cancel": "Отмена",
+        "save": "Сохранить"
+      },
+      "resumeDetailBlock": {
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "salary": "Зарплата",
+        "noSalary": "з/п не указана",
+        "from": "от",
+        "skills": "Навыки"
+      },
+      "resumeForm": {
+        "position": "Позиция",
+        "salary": "Зарплата",
+        "save": "Сохранить",
+        "skills": "Навыки"
+      },
+      "resumeListBlock": {
+        "salary": "Зарплата",
+        "noSalary": "з/п не указана",
+        "from": "от",
+        "lastWork": "Последнее место работы"
+      },
+      "workInfo": {
+        "experience": "Опыт работы",
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "organization": "Организация",
+        "position": "Позиция",
+        "untilNow": "по настоящее время",
+        "education": "Образование",
+        "startWork": "Дата начала работы",
+        "endWork": "Дата окончания работы",
+        "cancel": "Отмена",
+        "save": "Сохранить"
+      }
+    },
+    "users": {
+      "additionalUserForm": {
+        "about": "О себе",
+        "yearOfBirth": "Год рождения",
+        "delete": "удалить",
+        "photo": "ваше фото",
+        "loadPhoto": "Загрузить фото",
+        "save": "Сохранить",
+        "chooseFile": "Выберите файл размером до 1 мегабайта."
+      }
+    },
+    "vacancy": {
+      "companyForm": {
+        "name": "Название",
+        "email": "Email",
+        "delete": "удалить",
+        "yourLogo": "ваш логотип",
+        "loadLogo": "Загрузить логотип",
+        "description": "Описание",
+        "cancel": "Отмена",
+        "save": "Сохранить"
+      },
+      "companyInfo": {
+        "edit": "Редактировать",
+        "contacts": "Контакты",
+        "about": "О компании"
+      },
+      "vacancyDetailBlock": {
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "salary": "Зарплата",
+        "noSalary": "з/п не указана",
+        "description": "Описание"
+      },
+      "vacancyForm": {
+        "selectCompany": "Выберите компанию",
+        "company": "Компания",
+        "position": "Позиция",
+        "salary": "Зарплата",
+        "description": "Описание",
+        "save": "Сохранить"
+      },
+      "vacancyListBlock": {
+        "salary": "Зарплата",
+        "noSalary": "з/п не указана"
+      }
+    }
+  },
+  "views": {
+    "profile": {
+      "profileDetail": {
+        "yourResumes": "Ваши резюме",
+        "noResumes": "Резюме отсутствуют",
+        "yourVacancies": "Ваши вакансии",
+        "noVacancies": "Вакансии отсутствуют",
+        "noInfo": "Данной информации нет в базе."
+      }
+    },
+    "resume": {
+      "resumeDetail": {
+        "noResume": "Данного резюме нет в базе."
+      },
+      "resumeEdit": {
+        "noResume": "Данного резюме нет в базе."
+      },
+      "resumeList": {
+        "noResumes": "Резюме не найдены."
+      }
+    },
+    "vacancy": {
+      "vacancyDetail": {
+        "noVacancy": "Данной вакансии нет в базе."
+      },
+      "vacancyEdit": {
+        "noVacancy": "Данной вакансии нет в базе."
+      },
+      "vacancyList": {
+        "noVacancies": "Вакансии не найдены."
+      }
+    },
+    "home": {
+      "resumes": "Резюме",
+      "vacancies": "Вакансии"
+    }
+  },
+  "router": {
+    "titles": {
+      "resumeList": "Резюме",
+      "createResume": "Новое Резюме",
+      "resumeDetail": "Просмотр Резюме",
+      "resumeEdit": "Изменить Резюме",
+      "profileDetail": "Профиль",
+      "profileEdit": "Изменить Профиль",
+      "vacancyList": "Вакансии",
+      "vacancyCreate": "Новая Вакансия",
+      "vacancyDetail": "Просмотр Вакансии",
+      "vacancyEdit": "Изменить Вакансию"
+    },
+    "accessError": "Эта опция доступна только зарегистрированным пользователям."
+  },
+  "store": {
+    "errorAPI": "В данный момент сервер не доступен. Попробуйте зайти позже."
+  }
+}

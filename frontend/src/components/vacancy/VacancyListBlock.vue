@@ -18,9 +18,11 @@
       </span>
       <p>{{ vacancy.company_name }}</p>
       <p>
-        <strong>Зарплата: </strong>
+        <strong>{{ $t('components.vacancy.vacancyListBlock.salary') }}: </strong>
         <span v-if="vacancy.salary">от {{ vacancy.salary }}</span>
-        <span v-else>з/п не указана</span>
+        <span v-else>
+          {{ $t('components.vacancy.vacancyListBlock.noSalary') }}
+        </span>
       </p>
     </li>
   </ul>

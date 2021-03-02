@@ -1,0 +1,198 @@
+{
+  "components": {
+    "bars": {
+      "navbar": {
+        "resumes": "Resumes",
+        "vacanies": "Vacancies",
+        "register": "Registration",
+        "login": "Login",
+        "logout": "Logout"
+      },
+      "sidebar": {
+        "filter": "Filter",
+        "position": "Position",
+        "salary": "Salary",
+        "age": "Age",
+        "from": "from",
+        "to": "to",
+        "apply": "Apply",
+        "reset": "Reset"
+      }
+    },
+    "auth": {
+      "login": {
+        "login": "Login",
+        "username": "Username",
+        "password": "Password",
+        "cancel": "Cancel",
+        "enter": "Enter",
+        "register": "Registration"
+      },
+      "register": {
+        "register": "Registration",
+        "username": "Username",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "password": "Password",
+        "passwordAgain": "Confirmation",
+        "cancel": "Cancel",
+        "send": "Register",
+        "login": "Login"
+      }
+    },
+    "resume": {
+      "applicantInfo": {
+        "edit": "Edit",
+        "age": "Age",
+        "contacts": "Contacts",
+        "about": "About yourself"
+      },
+      "educationInfo": {
+        "education": "Education",
+        "edit": "Edit",
+        "delete": "Delete",
+        "institution": "Institution",
+        "specialization": "Specialization",
+        "yearOfEnding": "Year of ending",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "resumeDetailBlock": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "salary": "Salary",
+        "noSalary": "salary not specified",
+        "from": "from",
+        "skills": "Skills"
+      },
+      "resumeForm": {
+        "position": "Position",
+        "salary": "Salary",
+        "save": "Save",
+        "skills": "Skills"
+      },
+      "resumeListBlock": {
+        "salary": "Salary",
+        "noSalary": "salary not specified",
+        "from": "from",
+        "lastWork": "Last Work"
+      },
+      "workInfo": {
+        "experience": "Experience",
+        "edit": "Edit",
+        "delete": "Delete",
+        "organization": "Organization",
+        "position": "Position",
+        "untilNow": "until now",
+        "education": "Education",
+        "startWork": "The start date of work",
+        "endWork": "The end date of work",
+        "cancel": "Cancel",
+        "save": "Save"
+      }
+    },
+    "users": {
+      "additionalUserForm": {
+        "about": "About yourself",
+        "yearOfBirth": "Year of birth",
+        "delete": "delete",
+        "photo": "your photo",
+        "loadPhoto": "Load photo",
+        "save": "Save",
+        "chooseFile": "Select a file up to 1 megabyte in size."
+      }
+    },
+    "vacancy": {
+      "companyForm": {
+        "name": "Company Name",
+        "email": "Email",
+        "delete": "delete",
+        "yourLogo": "your logo",
+        "loadLogo": "Load logo",
+        "description": "Description",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "companyInfo": {
+        "edit": "Edit",
+        "contacts": "Contacts",
+        "about": "About Company"
+      },
+      "vacancyDetailBlock": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "salary": "Salary",
+        "noSalary": "salary not specified",
+        "description": "Description"
+      },
+      "vacancyForm": {
+        "selectCompany": "Select Company",
+        "company": "Company",
+        "position": "Position",
+        "salary": "Salary",
+        "description": "Description",
+        "save": "Save"
+      },
+      "vacancyListBlock": {
+        "salary": "Salary",
+        "noSalary": "salary not specified"
+      }
+    }
+  },
+  "views": {
+    "profile": {
+      "profileDetail": {
+        "yourResumes": "Your Resumes",
+        "noResumes": "No Resumes",
+        "yourVacancies": "Your Vacancies",
+        "noVacancies": "No Vacancies",
+        "noInfo": "This information is not in the database."
+      }
+    },
+    "resume": {
+      "resumeDetail": {
+        "noResume": "This resume is not in the database."
+      },
+      "resumeEdit": {
+        "noResume": "This resume is not in the database."
+      },
+      "resumeList": {
+        "noResumes": "Resumes not found."
+      }
+    },
+    "vacancy": {
+      "vacancyDetail": {
+        "noVacancy": "This vacancy is not in the database."
+      },
+      "vacancyEdit": {
+        "noVacancy": "This vacancy is not in the database."
+      },
+      "vacancyList": {
+        "noVacancies": "Vacancies not found."
+      }
+    },
+    "home": {
+      "resumes": "Resumes",
+      "vacancies": "Vacancies"
+    }
+  },
+  "router": {
+    "titles": {
+      "resumeList": "Resume",
+      "createResume": "Create Resume",
+      "resumeDetail": "Detail Resume",
+      "resumeEdit": "Edit Resume",
+      "profileDetail": "Profile",
+      "profileEdit": "Edit Profile",
+      "vacancyList": "Vacancy",
+      "vacancyCreate": "Create Vacancy",
+      "vacancyDetail": "Detail Vacancy",
+      "vacancyEdit": "Edit Vacancy"
+    },
+    "accessError": "This option is only available to registered users."
+  },
+  "store": {
+    "errorAPI": "The server is currently unavailable. Please try again later."
+  }
+}

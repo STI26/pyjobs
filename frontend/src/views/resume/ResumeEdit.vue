@@ -6,7 +6,9 @@
     <div v-else-if="resume" class="forms-wraper">
       <ResumeForm :dataForm="resume" />
     </div>
-    <p v-else>Данного резюме нет в базе.</p>
+    <p v-else>
+      {{ $t('views.resume.resumeEdit.noResume') }}
+    </p>
   </div>
 </template>
 

@@ -3,12 +3,14 @@
   <div class="user-block">
     <div class="user-block__info">
       <small v-if="isOwner" class="user-block__edit">
-        <router-link to="/profile/edit" href="#">Редактировать</router-link>
+        <router-link to="/profile/edit" href="#">
+          {{ $t('components.resume.applicantInfo.edit') }}
+        </router-link>
       </small>
       <h3>{{ user.name }}</h3>
-      <p>{{ user.age }} лет.</p>
-      <p>Контакты: {{ user.email }}</p>
-      <p>О себе:</p>
+      <p>{{ user.age }} {{ $t('components.resume.applicantInfo.age') }}.</p>
+      <p>{{ $t('components.resume.applicantInfo.contacts') }}: {{ user.email }}</p>
+      <p>{{ $t('components.resume.applicantInfo.about') }}:</p>
       <p>{{ user.bio }}</p>
     </div>
     <div class="user-block__photo">

@@ -3,8 +3,16 @@
     <div class="row">
       <div class="col s12">
         <ul ref="targetSearch" class="tabs">
-          <li class="tab"><a data-value="ResumeList" href="#resume">Резюме</a></li>
-          <li class="tab"><a data-value="VacancyList" href="#vacancy">Вакансии</a></li>
+          <li class="tab">
+            <a data-value="ResumeList" href="#resume">
+              {{ $t('views.home.resumes') }}
+            </a>
+          </li>
+          <li class="tab">
+            <a data-value="VacancyList" href="#vacancy">
+              {{ $t('views.home.vacancies') }}
+            </a>
+          </li>
         </ul>
       </div>
     </div>

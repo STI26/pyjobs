@@ -12,7 +12,9 @@
               v-model="form.name"
               required
             />
-            <label for="company-name">Название</label>
+            <label for="company-name">
+              {{ $t('components.vacancy.companyForm.name') }}
+            </label>
             <span v-if="errors.name" class="helper-text red-text">{{
               errors.name
             }}</span>
@@ -27,7 +29,9 @@
               v-model="form.email"
               required
             />
-            <label for="email">Email</label>
+            <label for="email">
+              {{ $t('components.vacancy.companyForm.email') }}
+            </label>
             <span v-if="errors.email" class="helper-text red-text">{{
               errors.email
             }}</span>
@@ -35,12 +39,19 @@
         </div>
         <label v-if="form.photo">
           <input v-model="clearPhoto" type="checkbox" class="filled-in" />
-          <span>удалить <a :href="form.photo">ваш логотип</a></span>
+          <span>
+            {{ $t('components.vacancy.companyForm.delete') }}
+            <a :href="form.photo">
+              {{ $t('components.vacancy.companyForm.yourLogo') }}
+            </a>
+          </span>
         </label>
         <div class="row">
           <div class="file-field input-field col s12">
             <div class="btn">
-              <span>Загрузить логотип</span>
+              <span>
+                {{ $t('components.vacancy.companyForm.loadLogo') }}
+              </span>
               <input type="file" accept="image/png, image/jpeg" @change="onImageChange">
             </div>
             <div class="file-path-wrapper">
@@ -59,7 +70,9 @@
               v-model="form.description"
               required
             ></textarea>
-            <label for="description">Описание</label>
+            <label for="description">
+              {{ $t('components.vacancy.companyForm.description') }}
+            </label>
             <span v-if="errors.description" class="helper-text red-text">{{
               errors.description
             }}</span>
@@ -72,14 +85,14 @@
       <div class="modal-footer">
         <div class="modal-footer__btns">
           <a href="#!" class="btn modal-close waves-effect waves-light red"
-            >Отмена</a
+            >{{ $t('components.vacancy.companyForm.cancel') }}</a
           >
           <button
             class="btn waves-effect waves-light"
             type="submit"
             name="action"
           >
-            Сохранить
+            {{ $t('components.vacancy.companyForm.save') }}
             <i class="material-icons right">send</i>
           </button>
         </div>

@@ -2,41 +2,41 @@
   <form @submit.prevent="applyFilter">
     <ul id="slide-out" ref="sidebarEl" class="sidenav sidenav-fixed">
       <a class="sidenav-close right hide-on-large-only" href="#!"><i class="material-icons">close</i></a>
-      <li><a class="subheader"><i class="material-icons">filter_list</i>Фильтр</a></li>
+      <li><a class="subheader"><i class="material-icons">filter_list</i>{{ $t("components.bars.sidebar.filter") }}</a></li>
       <li><div class="divider"></div></li>
       <li>
         <div class="row">
           <div class="input-field col s12">
             <input id="filter-position" v-model.lazy.trim="form.search" type="text">
-            <label for="filter-position">Должность</label>
+            <label for="filter-position">{{ $t("components.bars.sidebar.position") }}</label>
           </div>
         </div>
       </li>
       <li><div class="divider"></div></li>
-      <li><a class="subheader">Зарплата:</a></li>
+      <li><a class="subheader">{{ $t("components.bars.sidebar.salary") }}:</a></li>
       <li class="filter-field">
         <div class="row">
           <div class="input-field col s6">
             <input id="filter-salary-min" v-model.lazy.number="form.min_salary" type="number" min="0">
-            <label for="filter-salary-min">от</label>
+            <label for="filter-salary-min">{{ $t("components.bars.sidebar.from") }}</label>
           </div>
           <div class="input-field col s6">
             <input id="filter-salary-max" v-model.lazy.number="form.max_salary" type="number" min="0">
-            <label for="filter-salary-max">до</label>
+            <label for="filter-salary-max">{{ $t("components.bars.sidebar.to") }}</label>
           </div>
         </div>
       </li>
       <li v-if="isResume"><div class="divider"></div></li>
-      <li v-if="isResume"><a class="subheader">Возраст:</a></li>
+      <li v-if="isResume"><a class="subheader">{{ $t("components.bars.sidebar.age") }}:</a></li>
       <li v-if="isResume" class="filter-field">
         <div class="row">
           <div class="input-field col s6">
             <input id="filter-birth-max" v-model.lazy.number="form.max_birth" type="number" min="0">
-            <label for="filter-birth-max">от</label>
+            <label for="filter-birth-max">{{ $t("components.bars.sidebar.from") }}</label>
           </div>
           <div class="input-field col s6">
             <input id="filter-birth-min" v-model.lazy.number="form.min_birth" type="number" min="0">
-            <label for="filter-birth-min">до</label>
+            <label for="filter-birth-min">{{ $t("components.bars.sidebar.to") }}</label>
           </div>
         </div>
       </li>
@@ -45,7 +45,7 @@
           class="btn-flat waves-effect blue lighten-3"
           type="submit"
         >
-          Применить
+          {{ $t("components.bars.sidebar.apply") }}
         </button>
       </li>
       <li>
@@ -54,7 +54,7 @@
           type="reset"
           @click="resetForm"
         >
-          Сбросить
+          {{ $t("components.bars.sidebar.reset") }}
         </button>
       </li>
     </ul>

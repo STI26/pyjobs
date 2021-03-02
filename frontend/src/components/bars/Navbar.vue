@@ -2,13 +2,13 @@
   <div class="navbar-fixed">
     <ul id="userMenu" class="dropdown-content">
       <template v-if="!auth">
-        <li><a class="modal-trigger" href="#modal-login">Вход</a></li>
-        <li><a class="modal-trigger" href="#modal-register">Регистрация</a></li>
+        <li><a class="modal-trigger" href="#modal-login">{{ $t("components.bars.navbar.login") }}</a></li>
+        <li><a class="modal-trigger" href="#modal-register">{{ $t("components.bars.navbar.register") }}</a></li>
       </template>
       <template v-else>
         <li><router-link :to="{ name: 'ProfileDetail' }">{{ username }}</router-link></li>
         <li class="divider"></li>
-        <li><a @click="logout" href="#!">Выход</a></li>
+        <li><a @click="logout" href="#!">{{ $t("components.bars.navbar.logout") }}</a></li>
       </template>
     </ul>
     <nav class="grey lighten-1">
@@ -28,10 +28,10 @@
             <li :class="[ isActive && 'active' ]"><a :href="href">PyJobs</a></li>
           </router-link>
           <router-link to="/resume" v-slot="{ href, isActive }">
-            <li :class="[ isActive && 'active' ]"><a :href="href">Резюме</a></li>
+            <li :class="[ isActive && 'active' ]"><a :href="href">{{ $t("components.bars.navbar.resumes") }}</a></li>
           </router-link>
           <router-link to="/vacancy" v-slot="{ href, isActive }">
-            <li :class="[ isActive && 'active' ]"><a :href="href">Вакансии</a></li>
+            <li :class="[ isActive && 'active' ]"><a :href="href">{{ $t("components.bars.navbar.vacanies") }}</a></li>
           </router-link>
           <!-- Dropdown Trigger -->
           <li class="right">

@@ -7,7 +7,7 @@
       <ApplicantInfo :user="applicant" :isOwner="true" />
       <!-- resumes -->
       <div class="space-between">
-        <p>Ваши резюме:</p>
+        <p>{{ $t('views.profile.profileDetail.yourResumes') }}:</p>
         <router-link :to="{ name: 'ResumeCreate' }" class="btn-floating">
           <i class="material-icons">add</i>
         </router-link>
@@ -20,11 +20,11 @@
           >{{ resume.position }}</router-link
         >
       </div>
-      <p v-else>Резюме отсутствуют</p>
+      <p v-else>{{ $t('views.profile.profileDetail.noResumes') }}</p>
       <div class="divider"></div>
       <!-- vacancies -->
       <div class="space-between">
-        <p>Ваши вакансии:</p>
+        <p>{{ $t('views.profile.profileDetail.yourVacancies') }}:</p>
         <router-link :to="{ name: 'VacancyCreate' }" class="btn-floating">
           <i class="material-icons">add</i>
         </router-link>
@@ -37,7 +37,7 @@
           >{{ vacancy.position }}</router-link
         >
       </div>
-      <p v-else>Вакансии отсутствуют</p>
+      <p v-else>{{ $t('views.profile.profileDetail.noVacancies') }}</p>
       <div class="divider mb-2"></div>
       <!-- educations -->
       <EducationInfo
@@ -47,7 +47,7 @@
       <!-- works -->
       <WorkInfo :works="additionalUserInfo.works" :isOwner="true" />
     </div>
-    <p v-else>Данной информации нет в базе.</p>
+    <p v-else>{{ $t('views.profile.profileDetail.noInfo') }}</p>
   </div>
 </template>
 

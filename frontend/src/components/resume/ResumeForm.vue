@@ -10,7 +10,9 @@
           v-model="form.position"
           required
         />
-        <label for="position">Позиция</label>
+        <label for="position">
+          {{ $t('components.resume.resumeForm.position') }}
+        </label>
         <span v-if="errors.position" class="helper-text red-text">{{
           errors.position
         }}</span>
@@ -24,7 +26,9 @@
           class="validate"
           v-model="form.salary"
         />
-        <label for="salary">Зарплата</label>
+        <label for="salary">
+          {{ $t('components.resume.resumeForm.salary') }}
+        </label>
         <span v-if="errors.salary" class="helper-text red-text">{{
           errors.salary
         }}</span>
@@ -39,7 +43,7 @@
       }}</span>
     </div>
     <button class="btn waves-effect waves-light" type="submit">
-      Сохранить
+      {{ $t('components.resume.resumeForm.save') }}
       <i class="material-icons right">save</i>
     </button>
   </form>
@@ -52,6 +56,7 @@ import { onMounted, onUpdated, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { setObjFields, setErrorFields, clearObjectFields } from '@/assets/main'
+import { useI18n } from 'vue-i18n'
 
 export default {
   props: {
@@ -106,12 +111,13 @@ export default {
     }
 
     onMounted(async () => {
+      const { t } = useI18n({ useScope: 'global' })
       // fill form
       props.dataForm && setObjFields(form, props.dataForm)
       // load skills and autocomplete
       chipsObj = M.Chips.init(chips.value, {
         data: form.skills,
-        placeholder: 'Навыки',
+        placeholder: t('components.resume.resumeForm.skills'),
         secondaryPlaceholder: '+Tag',
         autocompleteOptions: {
           data: await autocompleteSkills()

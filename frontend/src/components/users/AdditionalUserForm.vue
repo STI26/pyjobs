@@ -10,7 +10,9 @@
               v-model="form.bio"
               required
             ></textarea>
-            <label for="bio">О себе</label>
+            <label for="bio">
+              {{ $t('components.users.additionalUserForm.about') }}
+            </label>
           </div>
         </div>
         <div class="row">
@@ -23,17 +25,22 @@
               ref="dateOfBirthElem"
               required
             />
-            <label for="year-of-birth">Год рождения</label>
+            <label for="year-of-birth">
+              {{ $t('components.users.additionalUserForm.yearOfBirth') }}
+            </label>
           </div>
         </div>
         <label v-if="form.photo">
           <input v-model="clearPhoto" type="checkbox" class="filled-in" />
-          <span>удалить <a :href="form.photo">ваше фото</a></span>
+          <span>
+            {{ $t('components.users.additionalUserForm.delete') }}
+            <a :href="form.photo">{{ $t('components.users.additionalUserForm.photo') }}</a>
+          </span>
         </label>
         <div class="row">
           <div class="file-field input-field  col s12">
             <div class="btn">
-              <span>Загрузить фото</span>
+              <span>{{ $t('components.users.additionalUserForm.loadPhoto') }}</span>
               <input type="file" accept="image/png, image/jpeg" @change="onImageChange">
             </div>
             <div class="file-path-wrapper">
@@ -41,7 +48,8 @@
             </div>
           </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Сохранить
+        <button class="btn waves-effect waves-light" type="submit">
+          {{ $t('components.users.additionalUserForm.save') }}
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -55,6 +63,7 @@ import { onMounted, onUnmounted, onUpdated, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { setObjFields, setErrorFields, clearObjectFields } from '@/assets/main'
+import { useI18n } from 'vue-i18n'
 
 export default {
   props: {
@@ -80,6 +89,7 @@ export default {
       photo: '',
       nonFieldErrors: ''
     })
+    const { t } = useI18n({ useScope: 'global' })
 
     const saveInfo = () => {
       const action = form.id ? 'updateAdditionalUserInfo' : 'saveAdditionalUserInfo'
@@ -102,11 +112,7 @@ export default {
           clearObjectFields(form)
           clearObjectFields(errors)
 
-          if (props.redirectTo) {
-            router.push(props.redirectTo)
-          } else {
-            router.push('/profile/')
-          }
+          router.push('/profile/')
         })
         .catch(error => {
           setErrorFields(errors, error.response.data)
@@ -117,7 +123,7 @@ export default {
       const files = e.target.files || e.dataTransfer.files
       if (!files.length) return null
       if (files[0].size > 1048576) {
-        M.toast({ html: 'Выберите файл размером до 1 мегабайта.' })
+        M.toast({ html: t('components.resume.resumeForm.chooseFile') })
         return null
       }
       photoFile = files[0]

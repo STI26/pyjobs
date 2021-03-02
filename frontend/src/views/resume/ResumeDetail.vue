@@ -7,7 +7,7 @@
       <ApplicantInfo :user="resume.owner_info" :isOwner="isOwner" />
       <ResumeDetailBlock :resume="resume" :isOwner="isOwner" />
     </div>
-    <p v-else>Данного резюме нет в базе.</p>
+    <p v-else>{{ $t('views.resume.resumeDetail.noResume') }}</p>
   </div>
 </template>
 

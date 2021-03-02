@@ -8,7 +8,7 @@
       <Paginator :paginator="paginator" />
     </div>
     <div class="nothing" v-else>
-      <p>Вакансии не найдены.</p>
+      <p>{{ $t('views.vacancy.vacancyList.noVacancies') }}</p>
     </div>
     <router-link
       to="/newvacancy"
