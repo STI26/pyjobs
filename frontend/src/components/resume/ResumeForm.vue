@@ -10,7 +10,9 @@
           v-model="form.position"
           required
         />
-        <label for="position">Позиция</label>
+        <label for="position">
+          {{ $t('components.resume.resumeForm.position') }}
+        </label>
         <span v-if="errors.position" class="helper-text red-text">{{
           errors.position
         }}</span>
@@ -24,7 +26,9 @@
           class="validate"
           v-model="form.salary"
         />
-        <label for="salary">Зарплата</label>
+        <label for="salary">
+          {{ $t('components.resume.resumeForm.salary') }}
+        </label>
         <span v-if="errors.salary" class="helper-text red-text">{{
           errors.salary
         }}</span>
@@ -39,7 +43,7 @@
       }}</span>
     </div>
     <button class="btn waves-effect waves-light" type="submit">
-      Сохранить
+      {{ $t('components.resume.resumeForm.save') }}
       <i class="material-icons right">save</i>
     </button>
   </form>

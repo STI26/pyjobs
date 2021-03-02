@@ -7,7 +7,9 @@
       <CompanyInfo :company="vacancy.company_info" :isOwner="isOwner" />
       <VacancyDetailBlock :vacancy="vacancy" :isOwner="isOwner" />
     </div>
-    <p v-else>Данной вакансии нет в базе.</p>
+    <p v-else>
+      {{ $t('views.vacancy.vacancyDetail.noVacancy') }}
+    </p>
   </div>
 </template>
 

@@ -5,20 +5,22 @@
     <div class="resume-block__header">
       <small v-if="isOwner" class="resume-block__header_edit">
         <router-link :to="{ name: 'ResumeEdit' }">
-          Редактировать
+          {{ $t('components.resume.resumeDetailBlock.edit') }}
         </router-link>
-        <a href="#" @click.prevent="deleteResume(resume.id)">Удалить</a>
+        <a href="#" @click.prevent="deleteResume(resume.id)">
+          {{ $t('components.resume.resumeDetailBlock.delete') }}
+        </a>
       </small>
       <h6>{{ resume.position.toUpperCase() }}</h6>
       <p>
-        Зарплата:
+        {{ $t('components.resume.resumeDetailBlock.salary') }}:
         <span v-if="resume.salary">от ${{ resume.salary }}</span>
-        <span v-else>з/п не указана</span>
+        <span v-else>{{ $t('components.resume.resumeDetailBlock.noSalary') }}</span>
       </p>
     </div>
     <!-- skills -->
     <div class="resume-block__skills">
-      Навыки:
+      {{ $t('components.resume.resumeDetailBlock.skills') }}:
       <span v-for="skill of resume.skills" :key="skill.tag">{{ skill.tag }}</span>
     </div>
     <!-- educations -->

@@ -3,7 +3,7 @@
   <div id="modal-register" class="modal" ref="modalRegister">
     <form @submit.prevent="onSubmit">
       <div class="modal-content">
-        <h4>Регистрация</h4>
+        <h4>{{ $t("components.auth.register.register") }}</h4>
         <div class="row">
           <div class="input-field col s6">
             <input
@@ -14,7 +14,7 @@
               v-model="form.username"
               required
             />
-            <label for="reg_username">Ник</label>
+            <label for="reg_username">{{ $t("components.auth.register.username") }}</label>
             <span v-if="errors.username" class="helper-text red-text">{{
               errors.username
             }}</span>
@@ -27,7 +27,7 @@
               class="validate"
               v-model="form.email"
             />
-            <label for="reg_email">Email</label>
+            <label for="reg_email">{{ $t("components.auth.register.email") }}</label>
             <span v-if="errors.email" class="helper-text red-text">{{
               errors.email
             }}</span>
@@ -42,7 +42,7 @@
               class="validate"
               v-model="form.first_name"
             />
-            <label for="first_name">Имя</label>
+            <label for="first_name">{{ $t("components.auth.register.firstName") }}</label>
           </div>
           <div class="input-field col s6">
             <input
@@ -52,7 +52,7 @@
               class="validate"
               v-model="form.last_name"
             />
-            <label for="last_name">Фамилия</label>
+            <label for="last_name">{{ $t("components.auth.register.lastName") }}</label>
           </div>
         </div>
         <div class="row">
@@ -65,7 +65,7 @@
               v-model="form.password"
               required
             />
-            <label for="reg_password">Пароль</label>
+            <label for="reg_password">{{ $t("components.auth.register.password") }}</label>
             <span v-if="errors.password" class="helper-text red-text">{{
               errors.password
             }}</span>
@@ -82,7 +82,7 @@
               v-model="form.confirm"
               required
             />
-            <label for="reg_confirm">Пароль ещё раз</label>
+            <label for="reg_confirm">{{ $t("components.auth.register.passwordAgain") }}</label>
             <span v-if="errors.confirm" class="helper-text red-text">{{
               errors.confirm
             }}</span>
@@ -92,19 +92,19 @@
       <div class="modal-footer">
         <div class="modal-footer__btns">
           <a href="#!" class="btn modal-close waves-effect waves-light red"
-            >Отмена</a
+            >{{ $t("components.auth.register.cancel") }}</a
           >
           <button
             class="btn waves-effect waves-light"
             type="submit"
             name="action"
           >
-            Зарегистрироватся
+            {{ $t("components.auth.register.send") }}
             <i class="material-icons right">send</i>
           </button>
         </div>
         <div class="modal-footer__links">
-          <a href="#modal-login" class="modal-close modal-trigger">Войти</a>
+          <a href="#modal-login" class="modal-close modal-trigger">{{ $t("components.auth.register.login") }}</a>
         </div>
       </div>
     </form>

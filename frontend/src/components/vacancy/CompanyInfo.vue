@@ -3,11 +3,13 @@
   <div class="company-block">
     <div class="company-block__info">
       <small v-if="isOwner" class="company-block__edit">
-        <a class="modal-trigger" href="#company-modal">Редактировать</a>
+        <a class="modal-trigger" href="#company-modal">
+          {{ $t('components.vacancy.companyInfo.edit') }}
+        </a>
       </small>
       <h3>{{ company.name }}</h3>
-      <p>Контакты: {{ company.email }}</p>
-      <p>О компании:</p>
+      <p>{{ $t('components.vacancy.companyInfo.contacts') }}: {{ company.email }}</p>
+      <p>{{ $t('components.vacancy.companyInfo.about') }}:</p>
       <p>{{ company.description }}</p>
     </div>
     <div class="company-block__photo">

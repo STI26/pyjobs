@@ -5,17 +5,21 @@
     <div class="vacancy-block__header">
       <small v-if="isOwner" class="vacancy-block__header_edit">
         <router-link :to="{ name: 'VacancyEdit' }">
-          Редактировать
+          {{ $t('components.vacancy.vacancyDetailBlock.edit') }}
         </router-link>
-        <a href="#" @click.prevent="deleteVacancy(vacancy.id)">Удалить</a>
+        <a href="#" @click.prevent="deleteVacancy(vacancy.id)">
+          {{ $t('components.vacancy.vacancyDetailBlock.delete') }}
+        </a>
       </small>
       <h6>{{ vacancy.position.toUpperCase() }}</h6>
       <p>
-        Зарплата:
+        {{ $t('components.vacancy.vacancyDetailBlock.salary') }}:
         <span v-if="vacancy.salary">от ${{ vacancy.salary }}</span>
-        <span v-else>з/п не указана</span>
+        <span v-else>
+          {{ $t('components.vacancy.vacancyDetailBlock.noSalary') }}
+        </span>
       </p>
-      <p>Описание:</p>
+      <p>{{ $t('components.vacancy.vacancyDetailBlock.description') }}:</p>
       <p>{{ vacancy.description }}</p>
     </div>
   </div>

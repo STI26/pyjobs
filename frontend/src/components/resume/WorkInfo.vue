@@ -1,22 +1,26 @@
 <template>
   <div v-if="works" class="block__works">
     <div class="block-works__header">
-      <h5>Опыт работы:</h5>
+      <h5>{{ $t('components.resume.workInfo.experience') }}:</h5>
       <a class="btn-floating" @click.prevent="openModal"><i class="material-icons">add</i></a>
     </div>
     <ul class="collection">
       <li v-for="work of works" :key="work.id" class="collection-item">
         <small v-if="isOwner" class="space-between">
-          <a href="#" @click.prevent="openModal(work)">Редактировать</a>
-          <a href="#" @click.prevent="deleteWork(work.id)">Удалить</a>
+          <a href="#" @click.prevent="openModal(work)">
+            {{ $t('components.resume.workInfo.edit') }}
+          </a>
+          <a href="#" @click.prevent="deleteWork(work.id)">
+            {{ $t('components.resume.workInfo.delete') }}
+          </a>
         </small>
-        <p>Организация: {{ work.organization }}</p>
-        <p>Позиция: {{ work.position }}</p>
+        <p>{{ $t('components.resume.workInfo.organization') }}: {{ work.organization }}</p>
+        <p>{{ $t('components.resume.workInfo.position') }}: {{ work.position }}</p>
         <p>
           <span>{{ work.join_date }}</span>
           -
           <span v-if="work.termination_date">{{ work.termination_date }}</span>
-          <span v-else>по настоящее время</span>
+          <span v-else>{{ $t('components.resume.workInfo.untilNow') }}</span>
         </p>
       </li>
     </ul>
@@ -24,7 +28,7 @@
     <div class="modal" ref="modalWork">
       <form @submit.prevent="onSubmit">
         <div class="modal-content">
-          <h4>Образование</h4>
+          <h4>{{ $t('components.resume.workInfo.education') }}</h4>
           <div class="row">
             <div class="input-field col s12">
               <input
@@ -34,7 +38,9 @@
                 v-model="form.organization"
                 required
               />
-              <label for="organization">Организация</label>
+              <label for="organization">
+                {{ $t('components.resume.workInfo.organization') }}
+              </label>
               <span v-if="errors.organization" class="helper-text red-text">{{
                 errors.organization
               }}</span>
@@ -49,7 +55,9 @@
                 v-model="form.position"
                 required
               />
-              <label for="position">Позиция</label>
+              <label for="position">
+                {{ $t('components.resume.workInfo.position') }}
+              </label>
               <span v-if="errors.position" class="helper-text red-text">{{
                 errors.position
               }}</span>
@@ -64,7 +72,9 @@
                 v-model.lazy="form.join_date"
                 ref="joinDateElem"
               />
-              <label for="join_date">Дата начала работы</label>
+              <label for="join_date">
+                {{ $t('components.resume.workInfo.startWork') }}
+              </label>
               <span v-if="errors.join_date" class="helper-text red-text">{{
                 errors.join_date
               }}</span>
@@ -77,7 +87,9 @@
                 v-model.lazy="form.termination_date"
                 ref="terminationDateElem"
               />
-              <label for="termination_date">Дата окончания работы</label>
+              <label for="termination_date">
+                {{ $t('components.resume.workInfo.endWork') }}
+              </label>
               <span v-if="errors.termination_date" class="helper-text red-text">{{
                 errors.termination_date
               }}</span>
@@ -90,14 +102,14 @@
         <div class="modal-footer">
           <div class="modal-footer__btns">
             <a href="#!" class="btn modal-close waves-effect waves-light red"
-              >Отмена</a
+              >{{ $t('components.resume.workInfo.cancel') }}</a
             >
             <button
               class="btn waves-effect waves-light"
               type="submit"
               name="action"
             >
-              Сохранить
+              {{ $t('components.resume.workInfo.save') }}
               <i class="material-icons right">send</i>
             </button>
           </div>

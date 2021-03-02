@@ -1,7 +1,8 @@
 import M from 'materialize-css'
 import axios from 'axios'
+import i18n from '@/localization/index'
 
-const ERROR_MESSAGE = 'В данный момент сервер не доступен. Попробуйте зайти позже.'
+const ERROR_MESSAGE = i18n.global.t('store.errorAPI')
 
 export default {
   actions: {

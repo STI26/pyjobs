@@ -6,7 +6,9 @@
     <div v-else-if="vacancy">
       <VacancyForm :dataForm="vacancy" />
     </div>
-    <p v-else>Данной вакансии нет в базе.</p>
+    <p v-else>
+      {{ $t('views.vacancy.vacancyEdit.noVacancy') }}
+    </p>
   </div>
 </template>
 

@@ -3,7 +3,7 @@
   <div id="modal-login" class="modal" ref="modalLogin">
     <form @submit.prevent="onSubmit">
       <div class="modal-content">
-        <h4>Вход</h4>
+        <h4>{{ $t("components.auth.login.login") }}</h4>
         <div class="input-field">
           <input
             id="login-username"
@@ -13,7 +13,7 @@
             v-model="form.username"
             required
           />
-          <label for="login-username">Ник</label>
+          <label for="login-username">{{ $t("components.auth.login.username") }}</label>
           <span v-if="errors.username" class="helper-text red-text">{{
             errors.username
           }}</span>
@@ -27,7 +27,7 @@
             v-model="form.password"
             required
           />
-          <label for="login-password">Пароль</label>
+          <label for="login-password">{{ $t("components.auth.login.password") }}</label>
           <span v-if="errors.password" class="helper-text red-text">{{
             errors.password
           }}</span>
@@ -42,20 +42,20 @@
       <div class="modal-footer">
         <div class="modal-footer__btns">
           <a href="#!" class="btn modal-close waves-effect waves-light red"
-            >Отмена</a
+            >{{ $t("components.auth.login.cancel") }}</a
           >
           <button
             class="btn waves-effect waves-light"
             type="submit"
             name="action"
           >
-            Войти
+            {{ $t("components.auth.login.enter") }}
             <i class="material-icons right">send</i>
           </button>
         </div>
         <div class="modal-footer__links">
           <a href="#modal-register" class="modal-close modal-trigger"
-            >Зарегистрироватся</a
+            >{{ $t("components.auth.login.register") }}</a
           >
         </div>
       </div>
