@@ -1,4 +1,4 @@
 {
-  "$schema": "https://github.com/STI26/pyjobs/blob/main/renovate-schema.json"
+  "$schema": "https://github.com/STI26/pyjobs/blob/main/renovate-schema.json",
   "prHourlyLimit": 5
 }
